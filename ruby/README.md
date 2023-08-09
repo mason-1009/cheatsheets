@@ -1,6 +1,6 @@
 # Ruby
 
-## Actually, I didn't make the claim that Ruby follows the principle of least surprise. Someone felt the design of Ruby follows that philosophy, so they started saying that. I didn't bring that up, actually. - Matz, Creator of Ruby
+> Actually, I didn't make the claim that Ruby follows the principle of least surprise. Someone felt the design of Ruby follows that philosophy, so they started saying that. I didn't bring that up, actually. - Matz, Creator of Ruby
 
 ---
 
