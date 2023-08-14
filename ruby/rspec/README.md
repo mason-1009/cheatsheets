@@ -27,6 +27,24 @@ describe SomeModule::SomeClass do
 end
 ```
 
+### Using Let for testing outputs
+```
+describe SomeModule::SomeClass do
+    let(:input_one) { 10 }
+    let(:input_two) { 20 }
+
+    let(:result) do
+        described_class.some_method_call(
+            input_one: input_one,
+            input_two: input_two
+        )
+    end
+
+    # :result will be lazy loaded during the test based on inputs set in each
+    # test context and run in each context separately
+end
+```
+
 ### Expectations
 ```
 # Numerical
