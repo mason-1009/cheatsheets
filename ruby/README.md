@@ -38,6 +38,17 @@ input = gets.chomp  # Gets line, removes \n with .chomp
 num = my_string.to_i
 ```
 
+### Assignment
+```
+# Regular assignment
+a = 0
+
+# Conditional assignment
+a = true
+a ||= true  # a = true
+a ||= false  # a = true
+```
+
 ### Control flow
 ```
 # if-elsif-else
