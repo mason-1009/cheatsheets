@@ -158,6 +158,47 @@ path('client/<int:id>/', app_views.client, name='app-views-client')
 </form>
 ```
 
+### Creating Class-Based Forms
+
+In `forms.py` in an app folder:
+
+```
+from django import forms
+
+
+class ContactForm(forms.Form):
+    subject = forms.CharField(max_length=100)
+    message = forms.CharField(widget=forms.Textarea)
+    sender = forms.EmailField()
+    cc_myself = forms.BooleanField(required=False)
+```
+
+Each form has a corresponding widget class, which renders the form to an HTML
+template.
+
+### Rendering Forms in HTML Templates
+
+In the template file:
+
+```
+<form action='...'>
+    {{ form.as_div }}
+</form>
+```
+
+Which results in the following being rendered:
+
+```
+<form action='...'>
+    <div>
+        <label for="id_subject">Subject:</label>
+        <input type="text" name="subject" maxlength="100" required
+            id="id_subject">
+    </div>
+    ...
+</form>
+```
+
 ### Class-Based Views
 
 Add the view to the `urls.py` in the app folder:
