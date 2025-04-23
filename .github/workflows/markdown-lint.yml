@@ -23,4 +23,4 @@ jobs:
         run: npm install
 
       - name: "Run Linter"
-        run: npm exec markdownlint '**/*.md' --ignore node_modules
+        run: npx markdownlint '**/*.md' --ignore node_modules
