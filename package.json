@@ -1,0 +1,18 @@
+{
+  "name": "cheatsheets",
+  "version": "1.0.0",
+  "description": "Developer tools for cheatsheets",
+  "homepage": "https://github.com/mason-1009/cheatsheets#readme",
+  "bugs": {
+    "url": "https://github.com/mason-1009/cheatsheets/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mason-1009/cheatsheets.git"
+  },
+  "author": "Marshall",
+  "type": "commonjs",
+  "devDependencies": {
+    "markdownlint-cli": "^0.44.0"
+  }
+}
