@@ -1,16 +1,21 @@
 # Ruby
 
-> Actually, I didn't make the claim that Ruby follows the principle of least surprise. Someone felt the design of Ruby follows that philosophy, so they started saying that. I didn't bring that up, actually. - Matz, Creator of Ruby
+> Actually, I didn't make the claim that Ruby follows the principle of least
+> surprise. Someone felt the design of Ruby follows that philosophy, so they
+> started saying that. I didn't bring that up, actually. - Matz, Creator of
+> Ruby
 
 ---
 
-### Printing to standard output
-```
+## Printing to standard output
+
+```ruby
 puts "Hello, world!"
 ```
 
-### Commenting
-```
+## Commenting
+
+```ruby
 # Single-line comment
 =begin
 This comment occupies
@@ -18,8 +23,9 @@ multiple lines.
 =end
 ```
 
-### String Handling
-```
+## String Handling
+
+```ruby
 my_string = "Test String"
 
 # Common string methods
@@ -38,8 +44,9 @@ input = gets.chomp  # Gets line, removes \n with .chomp
 num = my_string.to_i
 ```
 
-### Assignment
-```
+## Assignment
+
+```ruby
 # Regular assignment
 a = 0
 
@@ -49,8 +56,9 @@ a ||= true  # a = true
 a ||= false  # a = true
 ```
 
-### Control flow
-```
+## Control flow
+
+```ruby
 # if-elsif-else
 if num > 5
     puts "Num is greater than 5"
@@ -72,8 +80,9 @@ unless num > 5
 end
 ```
 
-### Arrays
-```
+## Arrays
+
+```ruby
 my_array = [1, 2, 3]
 
 # Indexing
@@ -87,8 +96,9 @@ my_array.sort  # Return sorted array
 my_array.sort!  # Modify the array to be sorted
 ```
 
-### Hashes
-```
+## Hashes
+
+```ruby
 # Hashes with symbols
 my_hash = {
     :first_name => 'Johnny',
@@ -115,8 +125,9 @@ my_hash.each_key { |key| puts key }
 my_hash.each_value { |value| puts value }
 ```
 
-### Iteration
-```
+## Iteration
+
+```ruby
 # Iterate over structures
 data = [1, 3, 5, 6]
 
@@ -149,8 +160,9 @@ while num < 5 do
 end
 ```
 
-### Functional features
-```
+## Functional features
+
+```ruby
 # Apply a block to every array element
 array_one = [1, 3, 5]
 array_two = array_one.collect { |num| num * 2 }
@@ -172,8 +184,9 @@ After the yield
 =end
 ```
 
-### OOP
-```
+## OOP
+
+```ruby
 class Test
     @@class_var = 0
 
@@ -207,8 +220,9 @@ class Student
 end
 ```
 
-### Namespace
-```
+## Namespace
+
+```ruby
 # Defines a module
 module MyModule
     def self.test

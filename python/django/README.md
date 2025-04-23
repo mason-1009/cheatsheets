@@ -1,11 +1,14 @@
 # Django
 
-> Sometimes time spent reinventing the wheel results in a revolutionary new rolling device. But sometimes it just amounts to time spent reinventing the wheel. - Steve Krug
+> Sometimes time spent reinventing the wheel results in a revolutionary new
+> rolling device. But sometimes it just amounts to time spent reinventing the
+> wheel. - Steve Krug
 
 ---
 
-### Models
-```
+## Models
+
+```python
 from django.db import models
 import uuid
 
@@ -46,8 +49,9 @@ class MyModel(models.Model):
         # Do something after the save (send email, etc)
 ```
 
-### Admin Panel
-```
+## Admin Panel
+
+```python
 from django.contrib import admin
 from .models import MyModel
 
@@ -57,11 +61,11 @@ class MyModelAdmin(admin.ModelAdmin):
 admin.site.register(MyModel, MyModelAdmin)
 ```
 
-### Routing
+## Routing
 
 In `project_folder/urls.py`:
 
-```
+```python
 from django.contrib import admin
 from django.urls import path, include
 
@@ -73,7 +77,7 @@ urlpatterns = [
 
 In `app_name/urls.py`:
 
-```
+```python
 from django.urls import path
 from . import views
 
@@ -88,11 +92,11 @@ urlpatterns = [
 # <int:int_var>
 ```
 
-### Base Template
+## Base Template
 
 This is the `base.html` template:
 
-```
+```python
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -114,8 +118,9 @@ This is the `base.html` template:
 </html>
 ```
 
-### HTML Templates
-```
+## HTML Templates
+
+```python
 {% extends "base.html" %}
 
 {% block title %}I override the base title!{% endblock %}
@@ -128,8 +133,9 @@ This is the `base.html` template:
 {% endblock %}
 ```
 
-### Template Filters
-```
+## Template Filters
+
+```python
 {{ value|default: "nothing" }}  # Render "nothing" if value is None/False
 {{ value|length }}  # Renders the length of value
 {{ value|filesizeformat }}  # Renders human-readable file size from number of bytes
@@ -148,8 +154,9 @@ path('client/<int:id>/', app_views.client, name='app-views-client')
 {% url 'app-views-client' client.id %}
 ```
 
-### HTML Forms with CSRF Protection
-```
+## HTML Forms with CSRF Protection
+
+```python
 <form method="post" action="/post_me">
     {% csrf_token %}
     <label for="fname">First name:</label>
@@ -158,11 +165,11 @@ path('client/<int:id>/', app_views.client, name='app-views-client')
 </form>
 ```
 
-### Creating Class-Based Forms
+## Creating Class-Based Forms
 
 In `forms.py` in an app folder:
 
-```
+```python
 from django import forms
 
 
@@ -176,11 +183,11 @@ class ContactForm(forms.Form):
 Each form has a corresponding widget class, which renders the form to an HTML
 template.
 
-### Rendering Forms in HTML Templates
+## Rendering Forms in HTML Templates
 
 In the template file:
 
-```
+```html
 <form action='...'>
     {{ form.as_div }}
 </form>
@@ -188,7 +195,7 @@ In the template file:
 
 Which results in the following being rendered:
 
-```
+```html
 <form action='...'>
     <div>
         <label for="id_subject">Subject:</label>
@@ -199,11 +206,11 @@ Which results in the following being rendered:
 </form>
 ```
 
-### Class-Based Views
+## Class-Based Views
 
 Add the view to the `urls.py` in the app folder:
 
-```
+```python
 from django.urls import path
 from .views import MyClassView
 
@@ -214,22 +221,34 @@ urlconfig = [
 
 Using the default `View` class:
 
-```
+```python
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.views import View
 
 class MyClassView(View):
     def get(self, request, *args, **kwargs):
-        return render(request, template_name, context=context, content_type=None, status=None)
+        return render(
+            request,
+            template_name,
+            context=context,
+            content_type=None,
+            status=None
+        )
 
     def post(self, request, *args, **kwargs):
-        return render(request, template_name, context=context, content_type=None, status=None)
+        return render(
+            request,
+            template_name,
+            context=context,
+            content_type=None,
+            status=None
+        )
 ```
 
 Using the `TemplateView` class:
 
-```
+```python
 from django.views.generic.base import TemplateView
 from articles.models import Article
 
@@ -244,7 +263,7 @@ class HomePageView(TemplateView):
 
 Using the `ListView` class:
 
-```
+```python
 from django.utils import timezone
 from django.views.generic.list import ListView
 
@@ -263,11 +282,11 @@ class ArticleListView(ListView):
 # Template file would be in myapp/article_list.html
 ```
 
-### Forms
+## Forms
 
 Create the form in the `myapp/forms.py` file:
 
-```
+```python
 from django import forms
 from django.core.exceptions import ValidationError
 
@@ -293,7 +312,7 @@ class ContactForm(forms.Form):
 
 Use the form in a template:
 
-```
+```python
 from django.shortcuts import render
 from .forms import ContactForm
 
@@ -304,7 +323,8 @@ def contact_view(request):
 ```
 
 Finally, in the `contact.html` file:
-```
+
+```html
 <form action="" method="post">
     {% csrf_token %}
     {{ form }}
@@ -312,11 +332,11 @@ Finally, in the `contact.html` file:
 </form>
 ```
 
-### Authentication
+## Authentication
 
 The default user model:
 
-```
+```python
 from django.contrib.auth.models import User
 
 # Create a user
@@ -337,7 +357,7 @@ user.check_password(input_pass)  # Returns True if successful
 
 The authentication flow:
 
-```
+```python
 from django.contrib.auth import authenticate
 
 user = authenticate(username='johnny', password='secret')
@@ -349,7 +369,7 @@ else:
 
 Using the built-in authentication views in the `urls.py` file:
 
-```
+```python
 from django.urls import path
 from django.contrib.auth import views as auth_views
 
@@ -366,7 +386,7 @@ urlpatterns = [
 
 Enforce authentication in function-based views:
 
-```
+```python
 from django.contrib.auth.decorators import login_required
 
 
@@ -379,7 +399,7 @@ def my_view(request):
 
 Enforce authentication in class-based views with a mixin:
 
-```
+```python
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 

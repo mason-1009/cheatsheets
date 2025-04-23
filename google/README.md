@@ -1,10 +1,11 @@
 # Google
 
-> We believed we could build a better search. We had a simple idea that not all pages are created equal. Some are more important. - Sergey Brin
+> We believed we could build a better search. We had a simple idea that not all
+> pages are created equal. Some are more important. - Sergey Brin
 
 ---
 
-### Web Search
+## Web Search
 
 Searching for pages:
 
@@ -32,7 +33,7 @@ Get quick information:
 * Show map results: `map:columbus ohio`
 * Search for information about a movie: `movie:shawshank redemption`
 
-### Gmail Filtering
+## Gmail Filtering
 
 Basic filtering:
 

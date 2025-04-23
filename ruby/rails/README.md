@@ -1,19 +1,25 @@
 # Ruby on Rails
 
-> Rails has done more for startups than a whole boatload of venture capitalists. - Eric Ries
+> Rails has done more for startups than a whole boatload of venture
+> capitalists. - Eric Ries
 
 ---
 
-### Models
+## Rails Naming Conventions
+
+Rails alternates between naming conventions for models
+
+## Models
 
 Generate a model and a corresponding migration
-```
+
+```ruby
 bin/rails generate model Thing name:string is_active:boolean number:integer
 ```
 
 Create an ActiveRecord model with a custom ID column
 
-```
+```ruby
 # Model
 class User < ApplicationRecord
   self.primary_key = :custom_id
@@ -35,7 +41,7 @@ end
 
 Create a foreign-key relationship
 
-```
+```ruby
 # Models
 class Master < ApplicationRecord
   has_many :slaves

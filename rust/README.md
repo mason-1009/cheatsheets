@@ -1,27 +1,33 @@
 # Rust
 
-> A quote from Chris Dickinson, engineer at npm, sums it up perfectly for me, because I have thought the same, without knowing the quote at that time: ‘My biggest compliment to Rust is that it's boring, and this is an amazing compliment'.
+> A quote from Chris Dickinson, engineer at npm, sums it up perfectly for me,
+> because I have thought the same, without knowing the quote at that time: ‘My
+> biggest compliment to Rust is that it's boring, and this is an amazing
+> compliment'.
 
 ---
 
-### Primitives
-```
+## Primitives
+
+```rust
 let logical: bool = true;
 
 let 32_float: f32 = 1.003;
 let 64_unsigned: u64 = 43423;
 ```
 
-### Tuples
-```
+## Tuples
+
+```rust
 let pair: (bool, i32) = (false, 343);
 
 // pair.0 = false
 // pair.1 = 343
 ```
 
-### Arrays
-```
+## Arrays
+
+```rust
 // Fixed array of unsigned 32-bit integers
 let fixed: [u32, 5] = [1, 2, 3, 4, 5];
 let same_value: [u32, 5] = [0, 5];
@@ -29,8 +35,9 @@ let same_value: [u32, 5] = [0, 5];
 // fixed.len() = 5
 ```
 
-### Structures and Enums
-```
+## Structures and Enums
+
+```rust
 struct Point {
     x: f32,
     y: f32,
@@ -77,8 +84,9 @@ enum Number {
 // Number::One as u32 = 1
 ```
 
-### Iterators
-```
+## Iterators
+
+```rust
 // v1_iter needs to be mutable for .next() to work
 // .iter() iterates over immutable references
 // .into_iter() iterates over owned values

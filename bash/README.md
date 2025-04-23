@@ -1,17 +1,20 @@
 # Bash
 
-> Unix gives you just enough rope to hang yourself – and then a couple of more feet, just to be sure. - Eric Allman
+> Unix gives you just enough rope to hang yourself – and then a couple of more
+> feet, just to be sure. - Eric Allman
 
 ---
 
-### Variables
-```
+## Variables
+
+```bash
 name="Firstname Lastname"
 echo "Hello, $name!"
 ```
 
-### Functions
-```
+## Functions
+
+```bash
 hello() {
     echo "First parameter: $1"
     echo "Second parameters: $2"
@@ -22,8 +25,9 @@ hello a b
 # Second parameter: b
 ```
 
-### Control flow
-```
+## Control flow
+
+```bash
 if [[ condition ]]; then
     echo "Condition is true"
 elif [[ other_condition ]]; then
@@ -33,8 +37,9 @@ else
 fi
 ```
 
-### Conditionals
-```
+## Conditionals
+
+```bash
 # Strings
 [[ -z STRING ]]  # Empty string
 [[ -n STRING ]]  # Non-empty string
@@ -65,8 +70,9 @@ fi
 [[ -x FILE ]]  # Is executable
 ```
 
-### Parameter subsitution
-```
+## Parameter subsitution
+
+```bash
 fname="jpgfile.jpg"
 
 echo ${fname%.jpg}  # jpgfile
@@ -75,8 +81,9 @@ echo ${fname/.jpg/.png}  # jpgfile.png
 echo ${fname//jpg/png}  # pngfile.png
 ```
 
-### Other string operations
-```
+## Other string operations
+
+```bash
 src="/path/to/foo.cpp"
 
 # String length
@@ -87,8 +94,9 @@ echo ${src##*/}  # foo.cpp
 echo ${src%$base}  # /path/to/
 ```
 
-### Loops
-```
+## Loops
+
+```bash
 # Loop files
 for file in /etc/rc.*; do
     echo "$i"
@@ -110,8 +118,9 @@ while true; do
 done
 ```
 
-### Calculation
-```
+## Calculation
+
+```bash
 a=3
 echo $((a+10))  # 13
 ```

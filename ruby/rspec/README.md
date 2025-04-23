@@ -1,11 +1,13 @@
 # RSpec
 
-> If debugging is the process of removing bugs, then programming must be the process of putting them in. - Edsger Dijkstra
+> If debugging is the process of removing bugs, then programming must be the
+> process of putting them in. - Edsger Dijkstra
 
 ---
 
-### Anatomy of an RSpec test
-```
+## Anatomy of an RSpec test
+
+```ruby
 # Testing a class or module
 describe SomeModule::SomeClass do
     
@@ -27,8 +29,9 @@ describe SomeModule::SomeClass do
 end
 ```
 
-### Using Let for testing outputs
-```
+## Using Let for testing outputs
+
+```ruby
 describe SomeModule::SomeClass do
     let(:input_one) { 10 }
     let(:input_two) { 20 }
@@ -45,8 +48,9 @@ describe SomeModule::SomeClass do
 end
 ```
 
-### Expectations
-```
+## Expectations
+
+```ruby
 # Numerical
 expect(subject.value).to eq(num)
 expect(subject.value).to_not eq(num)
@@ -79,8 +83,9 @@ expect(TopModule::LowerModule).to receive(:function_name)
     .and_return(results)
 ```
 
-### Hooks
-```
+## Hooks
+
+```ruby
 # Sets a method stub for TopModule::LowerModule.function_name
 before do
     # Mock method calls
@@ -90,8 +95,9 @@ before do
 end
 ```
 
-### Mocks
-```
+## Mocks
+
+```ruby
 # Creates a generic test double as a stub
 # http_response.status returns 200
 http_response = double(status: 200, body: 'OK')
