@@ -17,6 +17,7 @@ jobs:
           cache: 'npm'
           node-version: 20
           check-latest: true
+          cache-dependency-path: "package-lock.json"
 
       - name: "Run Linter"
         run: npm exec markdownlint --ignore node_modules .
