@@ -19,5 +19,8 @@ jobs:
           check-latest: true
           cache-dependency-path: "package-lock.json"
 
+      - name: "Install Node Dependencies"
+        run: npm install
+
       - name: "Run Linter"
         run: npm exec markdownlint --ignore node_modules .
