@@ -4,8 +4,11 @@ on: [push]
 
 jobs:
   markdown-lint:
+    runs-on: ubuntu-latest
+
     # Pull the repository
-    - uses: actions/checkout@v4
+    - name: "Checkout Repository"
+      uses: actions/checkout@v4
 
     # Setup NodeJS
     - name: "Setup Node"
