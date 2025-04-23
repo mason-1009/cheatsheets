@@ -5,18 +5,18 @@ on: [push]
 jobs:
   markdown-lint:
     runs-on: ubuntu-latest
+    steps:
+      # Pull the repository
+      - name: "Checkout Repository"
+        uses: actions/checkout@v4
 
-    # Pull the repository
-    - name: "Checkout Repository"
-      uses: actions/checkout@v4
+      # Setup NodeJS
+      - name: "Setup Node"
+        uses: actions/setup-node@v4
+        with:
+          cache: 'npm'
+          node-version: 20
+          check-latest: true
 
-    # Setup NodeJS
-    - name: "Setup Node"
-      uses: actions/setup-node@v4
-      with:
-        cache: 'npm'
-        node-version: 20
-        check-latest: true
-
-    - name: "Run Linter"
-      run: npx markdownlint --ignore node_modules .
+      - name: "Run Linter"
+        run: npx markdownlint --ignore node_modules .
