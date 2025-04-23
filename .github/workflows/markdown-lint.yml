@@ -19,4 +19,4 @@ jobs:
           check-latest: true
 
       - name: "Run Linter"
-        run: markdownlint --ignore node_modules .
+        run: npm exec markdownlint --ignore node_modules .
