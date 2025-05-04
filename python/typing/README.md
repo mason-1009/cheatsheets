@@ -11,6 +11,11 @@ Type hinting allows for annotating types in Python, which is normally
 dynamically-typed, to allow static analysis tools to automatically detect
 type-related bugs and errors.
 
+## Tools for Static Type Checking
+
+Currently, [`pyright`](https://github.com/microsoft/pyright) is the preferred
+tool for static type checking in Python.
+
 ## Basic Types
 
 ```python
