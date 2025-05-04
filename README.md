@@ -17,7 +17,7 @@ future.
 
 - [x] Python
   - [x] Django
-  - [ ] `unittest`
+  - [x] `unittest`
   - [ ] `requests`
   - [ ] Beautiful Soup
 - [x] Ruby
