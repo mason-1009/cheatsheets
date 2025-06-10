@@ -253,7 +253,7 @@ func Deferred() {
 
 ```go
 import (
-	"strings"
+    "strings"
 )
 
 strings.Contains("seafood", "eaf") // => true
@@ -268,7 +268,7 @@ strings.TrimSpace("   test   ") // => "test"
 
 ```go
 import (
-	"regexp"
+    "regexp"
 )
 
 compiledRegex := regexp.MustCompile(`([a-z]+)=([0-9]+)`)
@@ -279,7 +279,10 @@ compiledRegex.FindAllString(exampleString, -1) // => ["key=1", "otherkey=5", "ne
 
 // n = -1 means find all matches (limit matches with positive number)
 compiledRegex.FindAllStringSubmatch(exampleString, -1)
-// => [["key=1", "key", "1"], ["otherkey=5", "otherkey", "5"], ["nextkey=100", "nextkey", "100"]]
+// => [
+//    ["key=1", "key", "1"],
+//    ["otherkey=5", "otherkey", "5"],
+//    ["nextkey=100", "nextkey", "100"]]
 ```
 
 ## JSON
@@ -288,13 +291,13 @@ compiledRegex.FindAllStringSubmatch(exampleString, -1)
 
 ```go
 import (
-	"fmt"
-	"encoding/json"
+    "fmt"
+    "encoding/json"
 )
 
 type ResponseItem struct {
-	Name string `json:"name"`
-	Age int `json:"age"`
+    Name string `json:"name"`
+    Age int `json:"age"`
 }
 
 body := []byte("{\"name\": \"Johnny Appleseed\", \"age\": 18}")
@@ -308,13 +311,13 @@ json.Unmarshal(body, &parsed)
 
 ```go
 import (
-	"fmt"
-	"encoding/json"
+    "fmt"
+    "encoding/json"
 )
 
 type ResponseItem struct {
-	Name string `json:"name"`
-	Age int `json:"age"`
+    Name string `json:"name"`
+    Age int `json:"age"`
 }
 
 responseItem := ResponseItem {
@@ -332,8 +335,8 @@ text := string(byteString)
 
 ```go
 import (
-	"io"
-	"net/http"
+    "io"
+    "net/http"
 )
 
 resp, _ := http.Get("https://www.google.com/humans.txt")
@@ -347,17 +350,17 @@ stringBody := string(body)
 
 ```go
 import (
-	"io"
-	"fmt"
-	"bytes"
-	"net/http"
-	"encoding/json"
+    "io"
+    "fmt"
+    "bytes"
+    "net/http"
+    "encoding/json"
 )
 
 type ResponseItem struct {
-	Title string `json:"title"`
-	Body string `json:"body"`
-	UserId int `json:"userId"`
+    Title string `json:"title"`
+    Body string `json:"body"`
+    UserId int `json:"userId"`
 }
 
 // Create POST body and convert to bytes
