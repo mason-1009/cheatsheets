@@ -128,3 +128,23 @@ class MyTestCase(TestCase):
   methods.
 * `MagicMock` sets default values of magic methods for cases where a definition
   is needed but the return value is unnecessary.
+
+## Environment Variables
+
+Environment variables can be mocked with `mock.patch.dict(...)`. This
+snippet updates environment variables with the key-value pairs provided in
+the dictionary:
+
+```python
+with mock.patch.dict(os.environ, {'KEY': 'VALUE'}):
+    ...
+```
+
+Passing `clear=True` empties all environment variables before patching in
+the provided dictionary. The following snippet ensures that all environment
+variables are unset:
+
+```python
+with mock.patch.dict(os.environ, {}, clear=True):
+    ...
+```
