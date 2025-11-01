@@ -61,6 +61,10 @@ future.
 - [ ] GNU `find`
 - [ ] GNU `bc`
 
+### Command-Line Utilities
+
+- [x] `git`
+
 ### Static Site Generators
 
 - [ ] Hugo
@@ -78,4 +82,5 @@ future.
 ### Miscellaneous
 
 - [x] Google
+- [ ] JIRA Query Language (JQL)
 - [ ] Greasemonkey / Tampermonkey API
