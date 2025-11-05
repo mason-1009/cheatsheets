@@ -61,6 +61,11 @@ future.
 - [ ] GNU `find`
 - [ ] GNU `bc`
 
+### Database Management Systems
+
+- [x] `sqlite3`
+- [ ] `postgres`
+
 ### Command-Line Utilities
 
 - [x] `git`
