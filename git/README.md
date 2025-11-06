@@ -211,6 +211,13 @@ Undo the changes created by the provided commit, without creating a new commit:
 git revert --no-commit commit
 ```
 
+Cherry-pick (copy a commit from another branch and bring it to the current
+branch without a merge:
+
+```bash
+git cherry-pick other_branch_commit
+```
+
 ## Managing Branches
 
 List all branches:
