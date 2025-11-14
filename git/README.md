@@ -285,3 +285,39 @@ git checkout --track origin/my-remote-branch
 
 This creates a local branch named `my-remote-branch` which tracks the remote
 branch of the same name.
+
+## Handling Merge Conflicts
+
+Merge from `other-branch` while favoring that branch's changes
+over the current branch when merge conflicts arise:
+
+```bash
+git merge -X theirs other-branch
+```
+
+Favor our changes instead:
+
+```bash
+git merge -X ours other-branch
+```
+
+When a merge is underway and already in a conflicted state, resolve a
+conflicted file by checking out its version from `other-branch`:
+
+```bash
+git checkout --theirs -- file_name.ext
+```
+
+## Restoring Files
+
+Discard changes that are not staged for a file:
+
+```bash
+git restore file_name.ext
+```
+
+Remove a file from the staging area, but leave its modifications intact:
+
+```bash
+git restore --staged file_name.ext
+```
