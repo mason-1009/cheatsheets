@@ -307,3 +307,17 @@ conflicted file by checking out its version from `other-branch`:
 ```bash
 git checkout --theirs -- file_name.ext
 ```
+
+## Restoring Files
+
+Discard changes that are not staged for a file:
+
+```bash
+git restore file_name.ext
+```
+
+Remove a file from the staging area, but leave its modifications intact:
+
+```bash
+git restore --staged file_name.ext
+```
