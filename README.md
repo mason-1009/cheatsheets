@@ -31,7 +31,7 @@ future.
 - [x] Golang
   - [ ] Go Standard Library
   - [ ] `testify`
-- [ ] Vimscript
+- [x] Vimscript
 - [ ] Javascript
   - [ ] Node
   - [ ] Express
