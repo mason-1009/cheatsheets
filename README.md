@@ -33,7 +33,7 @@ future.
   - [ ] `testify`
 - [x] Vimscript
 - [ ] Javascript
-  - [ ] Node
+  - [x] Node
   - [ ] Express
   - [ ] JQuery
   - [ ] React
