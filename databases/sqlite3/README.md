@@ -128,6 +128,12 @@ SELECT json_extract('{"a": {"b": 3}}', '$.a.b');
 
 -- Handle JSON arrays, returning 7
 SELECT json_extract('{"a":2,"c":[4,5,{"f":7}]}', '$.c[2].f');
+
+-- Query from a JSON array stored in a user table
+-- Select all users who have any phone number with a 704 area code
+SELECT DISTINCT user.name
+  FROM user, json_each(user.phone)
+ WHERE json_each.value LIKE '704-%';
 ```
 
 ### Date and Time Functions
@@ -158,4 +164,52 @@ UPDATE docs SET body=edit(body, 'nvim') WHERE name='report-15';
 
 -- Opens the blob 'img' in GIMP for image editing
 UPDATE pics SET img=edit(img, 'gimp') WHERE id='pic-1542';
+```
+
+## Extract-Transform-Load
+
+### Loading Binary Data
+
+The `sqlite3` command-line tool can read binary data into `BLOB` columns (as
+well as other types) from files. Consider `images (name TEXT, img BLOB)`:
+
+```sql
+INSERT INTO images (name, img) VALUES ('name', readfile('image_file.jpg'));
+```
+
+### Importing JSON
+
+The `sqlite3` command-line tool has powerful tools for extracting,
+transforming, and loading data into tables from JSON-encoded files. Consider
+the following JSON schema:
+
+```json
+[
+  {
+    "name": "Name One",
+    "time": 12345
+  },
+  {
+    "name": "Name Two",
+    "time": 12348
+  }
+]
+```
+
+Now consider table `items (name TEXT, time BIGINT)`:
+
+```sql
+INSERT INTO items (name, time) SELECT
+  -- value is set by json_each
+  json_extract(value, '$.name'),
+  json_extract(value, '$.time')
+FROM json_each(readfile('data_file.json'));
+```
+
+This loads each value from the array into the table. The result from `SELECT *
+FROM items;` produces:
+
+```text
+Name One|12345
+Name Two|12348
 ```
