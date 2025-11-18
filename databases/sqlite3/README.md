@@ -213,3 +213,51 @@ FROM items;` produces:
 Name One|12345
 Name Two|12348
 ```
+
+## Full Text Search
+
+SQLite3 ships with virtual table modules `fts3` and `fts4`; both are extensions
+which provide full-text search capabilities, allowing for complex search
+operations over large amounts of text.
+
+### Creating FTS Tables
+
+Create a virtual `fts4` table using the following SQL statement:
+
+```sql
+CREATE VIRTUAL TABLE search USING fts4(content TEXT);
+```
+
+It is possible for an `fts4` table to have multiple columns (searches select
+rows based on results from all columns):
+
+```sql
+CREATE VIRTUAL TABLE users USING fts4(name TEXT, bio TEXT);
+```
+
+### Making Queries
+
+Find all user rows who match the search term `search_term`:
+
+```sql
+SELECT * FROM users WHERE users MATCH 'search_term';
+```
+
+`fts4` supports more advanced matching syntax than vanilla SQL:
+
+```sql
+-- Match the first token of at least one column
+SELECT * FROM users WHERE users MATCH '^first_token';
+
+-- Wildcard matching anything
+SELECT * FROM users WHERE users MATCH 'something*';
+
+-- Match columns
+SELECT * FROM users WHERE users MATCH 'name: ^first_name';
+
+-- Find rows whose columns have nearby terms
+SELECT * FROM users WHERE users MATCH 'first_term NEAR second_term';
+
+-- Find rows whose columns have nearby terms within five terms
+SELECT * FROM users WHERE users MATCH 'first_term NEAR/5 second_term';
+```
