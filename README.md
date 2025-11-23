@@ -69,6 +69,7 @@ future.
 ### Command-Line Utilities
 
 - [x] `git`
+- [x] `ffmpeg`
 
 ### Static Site Generators
 
