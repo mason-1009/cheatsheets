@@ -70,6 +70,7 @@ future.
 
 - [x] `git`
 - [x] `ffmpeg`
+- [x] `rsync`
 
 ### Static Site Generators
 
