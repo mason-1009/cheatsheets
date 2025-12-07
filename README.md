@@ -34,7 +34,7 @@ future.
 - [x] Vimscript
 - [ ] Javascript
   - [x] Node
-  - [ ] Express
+  - [x] Express
   - [ ] JQuery
   - [ ] React
   - [ ] Vue
