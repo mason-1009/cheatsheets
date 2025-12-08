@@ -82,7 +82,7 @@ future.
 
 - [ ] Docker
 - [ ] Makefiles
-- [ ] Docker Compose
+- [x] Docker Compose
 
 ### Testing Frameworks
 
