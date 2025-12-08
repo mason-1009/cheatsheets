@@ -35,6 +35,7 @@ future.
 - [ ] Javascript
   - [x] Node
   - [x] Express
+  - [x] Jest
   - [ ] JQuery
   - [ ] React
   - [ ] Vue
