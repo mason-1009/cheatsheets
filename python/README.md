@@ -114,6 +114,84 @@ filter_iter = filter(lambda n: n % 2 == 0, range(10))
 list(filter_iter) # [0, 2, 4, 6, 8]
 ```
 
+## Dates and Times
+
+Specific points in time can be represented with the `datetime.datetime`
+object:
+
+```python
+import datetime
+
+# Timezone-naive objects
+datetime.datetime.now()
+datetime.datetime.fromtimestamp(1765327531)
+datetime.datetime(year=2025, month=6, day=19)
+datetime.datetime.fromisoformat('2011-11-04T00:05:23')
+
+# Timezone-aware objects
+datetime.datetime.now(tz=datetime.UTC)
+datetime.datetime.fromtimestamp(1765327531, tz=datetime.UTC)
+datetime.datetime(year=2025, month=6, day=19, tzinfo=datetime.UTC)
+datetime.datetime.fromisoformat('2011-11-04T00:05:23Z')
+datetime.datetime.fromisoformat('2011-11-04 00:05:23.283+00:00')
+
+# Convert to ISO format
+dt = datetime.datetime(year=2025, month=6, day=19, tzinfo=datetime.UTC)
+dt.isoformat() # 2025-06-19T00:00:00+00:00''
+
+# Perform math on datetime objects
+datetime.datetime.now() + datetime.timedelta(days=4, hours=3)
+```
+
+### Timezone Conversions
+
+```python
+import datetime
+from zoneinfo import ZoneInfo
+
+dt = datetime.datetime.fromisoformat('2011-11-04T00:05:23Z')
+
+# Returns another timezone-aware object in Los Angeles time
+la_time = dt.astimezone(tz=ZoneInfo('America/Los_Angeles'))
+
+# Similarly for New York time
+ny_time = dt.astimezone(tz=ZoneInfo('America/New_York'))
+```
+
+List available timezones:
+
+```python
+from zoneinfo import available_timezones
+
+available_timezones()
+```
+
+### Handling Dates
+
+```python
+import datetime
+
+# Create a date object
+datetime.date(year=2012, month=12, day=21)
+
+# Get the current date
+datetime.date.today()
+datetime.datetime.now().date()
+
+# Get the weekday
+today = datetime.date.today()
+
+# Monday = 0 --> Sunday = 6
+today.weekday()
+
+# Monday = 1 --> Sunday = 7
+today.isoweekday()
+
+# Perform math on dates
+nd = datetime.date(year=2011, month=5, day=1) + datetime.timedelta(days=5)
+nd.isoformat() # '2011-05-06'
+```
+
 ## Handling CSV Files
 
 Python's built-in `csv` library can handle reading and writing both
