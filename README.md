@@ -65,7 +65,7 @@ future.
 ### Database Management Systems
 
 - [x] `sqlite3`
-- [ ] `postgres`
+- [x] `postgres`
 
 ### Command-Line Utilities
 
