@@ -57,7 +57,7 @@ future.
 
 ### Shell Utilities
 
-- [ ] `sed`
+- [x] `sed`
 - [ ] `awk`
 - [ ] GNU `find`
 - [ ] GNU `bc`
