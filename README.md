@@ -34,7 +34,8 @@ future.
 - [x] Vimscript
 - [ ] Javascript
   - [x] Node
-  - [ ] Express
+  - [x] Express
+  - [x] Jest
   - [ ] JQuery
   - [ ] React
   - [ ] Vue
@@ -56,7 +57,7 @@ future.
 
 ### Shell Utilities
 
-- [ ] `sed`
+- [x] `sed`
 - [ ] `awk`
 - [ ] GNU `find`
 - [ ] GNU `bc`
@@ -64,13 +65,14 @@ future.
 ### Database Management Systems
 
 - [x] `sqlite3`
-- [ ] `postgres`
+- [x] `postgres`
 
 ### Command-Line Utilities
 
 - [x] `git`
 - [x] `ffmpeg`
 - [x] `rsync`
+- [x] `rclone`
 
 ### Static Site Generators
 
@@ -80,7 +82,7 @@ future.
 
 - [ ] Docker
 - [ ] Makefiles
-- [ ] Docker Compose
+- [x] Docker Compose
 
 ### Testing Frameworks
 

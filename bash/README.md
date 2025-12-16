@@ -133,3 +133,50 @@ done
 a=3
 echo $((a+10))  # 13
 ```
+
+## Miscellaneous
+
+### Using `mountpoint`
+
+In a `bash` script, it is possible to determine if a directory is a mounted
+file system using the `mountpoint` command. This is useful for scripts which
+need to check if a resource is mounted before proceeding (such as automated
+backup scripts).
+
+`mountpoint` exits with a `0` (success) code if the directory is mounted, and a
+`32` if the directed is not mounted:
+
+```bash
+# This prints nothing
+mountpoint --quiet /mnt/test_folder && echo 'Mounted!'
+
+mount /dev/sdXx /mnt/test_folder
+
+# This prints "Mounted!"
+mountpoint --quiet /mnt/test_folder && echo 'Mounted!'
+```
+
+This command is provided by the `util-linux` package and may not be available
+on every `bash` installation.
+
+### Print File + Folder Metadata with `stat`
+
+The GNU `coreutils` package ships with the `stat` command, which returns
+metadata about a file or folder:
+
+```bash
+stat file.txt
+```
+
+Which prints:
+
+```text
+  File: file.txt
+  Size: 295     Blocks: 8      IO Block: 4096  regular file
+Device: 259,2   Inode: 1311544     Links: 1
+Access: (0644/-rw-r--r--)  Uid: ( 1000/username)   Gid: ( 1000/groupname)
+Access: 2025-12-02 08:13:30.648583993 -0500
+Modify: 2025-11-30 12:11:57.250069914 -0500
+Change: 2025-11-30 12:11:57.250069914 -0500
+ Birth: 2025-11-30 12:11:57.250069914 -0500
+```
