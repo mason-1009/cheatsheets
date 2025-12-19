@@ -89,9 +89,8 @@ CREATE OR REPLACE FUNCTION check_user_max_resource_count() RETURNS trigger AS $$
             RAISE EXCEPTION 
                 'Cannot insert resource % because user ownership of resources has reached its max count', 
                 NEW.name;
-        END IF:
-        RETURN NEW
-
+        END IF;
+        RETURN NEW;
     END;
 $$ LANGUAGE plpgsql;
 
