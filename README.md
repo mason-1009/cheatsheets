@@ -18,7 +18,8 @@ future.
 - [x] Python
   - [x] Django
   - [x] `unittest`
-  - [ ] `requests`
+  - [x] Faker
+  - [ ] `httpx`
   - [ ] Beautiful Soup
 - [x] Ruby
   - [x] RSpec
@@ -36,6 +37,7 @@ future.
   - [x] Node
   - [x] Express
   - [x] Jest
+  - [x] Faker
   - [ ] JQuery
   - [ ] React
   - [ ] Vue
