@@ -77,7 +77,7 @@ future.
   - [ ] Go Standard Library
   - [ ] `testify`
 - [x] Vimscript
-- [ ] Javascript
+- [x] Javascript
   - [x] Node
   - [x] Express
   - [x] Jest
@@ -104,7 +104,7 @@ future.
 ### Shell Utilities
 
 - [x] `sed`
-- [ ] `awk`
+- [x] `awk`
 - [ ] GNU `find`
 - [ ] GNU `bc`
 
