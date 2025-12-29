@@ -138,4 +138,4 @@ future.
 
 - [x] Google
 - [ ] JIRA Query Language (JQL)
-- [ ] Greasemonkey / Tampermonkey API
+- [x] Greasemonkey / Tampermonkey API
