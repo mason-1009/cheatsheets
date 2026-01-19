@@ -246,6 +246,86 @@ with open('names.tsv', 'w') as tsv_file:
     writer.writerows(some_iterable)
 ```
 
+## Handling Emails
+
+Python has built-in support for creating and parsing emails via its `email`
+module:
+
+### Creating and Sending an Email
+
+Using `smtplib` (built-in) and `email`, one can construct a valid email message
+and send it directly to an SMTP server:
+
+```python
+import smtplib
+from email.message import EmailMessage
+
+# Read from a file for message content
+with open('path/to/file.txt', 'r') as fp:
+    msg = EmailMessage()
+    msg.set_content(fp.read())
+
+msg['Subject'] = 'Subject Line --- IMPORTANT'
+msg['From'] = 'my.address@email.com'
+msg['To'] = 'your.address@email.com'
+
+# Send the message to a locally-running SMTP server
+s = smtplib.SMTP('localhost')
+s.send_message(msg)
+s.quit()
+```
+
+### Parsing Raw Emails
+
+The `email` module can create a `email.message.Message` object from a file
+pointer (using `Parser().parse(...)`) or a string (using
+`Parser().parsestr(...)`):
+
+```python
+import base64
+from email.parser import Parser
+
+with open('path/to/email_file.eml', 'r') as email_fp:
+    # Use `Parser().parsestr(...)` for non-file pointers
+    # `parsed_email` is an `email.message.Message` object
+    parsed_email = Parser().parse(email_fp)
+
+# Access email headers like a dictionary (case-insensitive)
+parsed_email['To']   # 'example@email.com'
+parsed_email['From'] # 'NYT Cooking <nytdirect@nytimes.com>'
+parsed_email['Date'] # 'Fri, 16 Jan 2026 16:01:47 +0000'
+
+# Get all headers
+parsed_email.keys()
+
+# Content type
+parsed_email.is_multipart()     # True
+parsed_email.get_content_type() # 'text/html`
+
+# Emails are often multipart, especially if they contain attachments. Walk
+# through an email's parts to get the portion you want.
+for part in parsed_email.walk():
+    if not part.is_multipart():
+        # This means the message has no children
+        if part.get_content_maintype() == 'text':
+            if part.get_content_type() == 'text/plain':
+                # Print decoded UTF-8 text
+                print(part.get_payload(decode=True))
+            elif part.get_content_type() == 'text/html':
+                # Print decoded UTF-8 text
+                print(part.get_payload(decode=True))
+            else:
+                ...
+        elif part.get_content_maintype() == 'image':
+            # Parse `base64`-encoding string if the return value is a
+            # string/byte-string
+            if part.get_content_type() == 'image/jpeg':
+                with open(part.get_filename(), 'wb') as output_fp:
+                    output_fp.write(base64.b64decode(part.get_payload()))
+        else:
+            ...
+```
+
 ## Parsing Configuration Files
 
 Python has built-in support for reading `.ini` configuration files using the
