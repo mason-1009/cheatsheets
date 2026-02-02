@@ -192,6 +192,63 @@ nd = datetime.date(year=2011, month=5, day=1) + datetime.timedelta(days=5)
 nd.isoformat() # '2011-05-06'
 ```
 
+## Command-Line Arguments
+
+Python has built-in support for handling command-line utilities using its
+`argparse` module:
+
+```python
+import argparse
+
+argument_parser = argparse.ArgumentParser(
+    prog='program-name',
+    description='Does thing A and thing B!',
+    epilog='Bottom help text'
+)
+
+# Add a required positional argument
+argument_parser.add_argument(
+    'filepath', help='The path of the file'
+)
+
+# Pass a value using a switch (required)
+argument_parser.add_argument(
+    '-o', '--output',
+    dest='output_path', required=True,
+    help='The path of the output file'
+)
+
+# Pass a value using a switch (optional)
+argument_parser.add_argument(
+    '-s', '--separator',
+    dest='sep_char', required=False,
+    help='An optional separator character'
+)
+
+# Add an on/off flag
+argument_parser.add_argument(
+    '-v', '--verbose',
+    required=False, action='store_true',
+    dest='verbose', default=False,
+    help='Enable verbose logging'
+)
+
+# Pass arguments as a list (useful for testing)
+namespace = argument_parser.parse_args([
+    '-o', 'other_file', 'filename'
+])
+
+# Otherwise, the parser pulls args from sys.argv
+namespace = argument_parser.parse_args()
+
+# Access namespace values directly
+print(f'File path is {namespace.filepath}')
+```
+
+**Note:** The object returned by `parse_args(...)` is an `argparse.Namespace`
+object, with parsed argument values set as instance attributes. The key is
+determined by the name of the flag, or by the value of its `dest` argument.
+
 ## Handling CSV Files
 
 Python's built-in `csv` library can handle reading and writing both
