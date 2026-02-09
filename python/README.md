@@ -192,6 +192,82 @@ nd = datetime.date(year=2011, month=5, day=1) + datetime.timedelta(days=5)
 nd.isoformat() # '2011-05-06'
 ```
 
+## Context Managers
+
+Context managers allow for the concise, convenient allocation, use, and
+automatic deallocation of resources using the `with` keyword. A context manager
+can be created quickly with the `contextlib` module, or constructed as a class.
+
+### Class-Based Context Manager
+
+All synchronous class-based context managers fit the form of
+`contextlib.AbstractContextManager`, defining `__enter__` and `__exit__`. The
+return value of `__enter__` is bound to the variable defined in the `with`
+statement, while `__exit__` cleans up when the interior code is finished:
+
+```python
+from types import TracebackType
+from contextlib import AbstractContextManager
+
+
+class ContextManager(AbstractContextManager):
+    def __enter__(self) -> str:
+        print('Entering the context manager')
+        return 'Hello!'
+
+    def __exit__(
+        self, exc_type: type[BaseException] | None,
+        exc_value: BaseException | None, traceback: TracebackType | None
+    ) -> None:
+        # Do cleanup here
+        print('Exiting the context manager')
+
+
+with ContextManager() as provided_var:
+    print(provided_var)
+```
+
+This creates the following output:
+
+```text
+Entering the context manager
+Hello!
+Exiting the context manager
+```
+
+**Note:** In cases where an exception is thrown by the code within the context
+manager, `exc_type`, `exc_value`, and `traceback` will be passed to `__exit__`.
+Otherwise, these values are `None`.
+
+### Yield-Based Context Manager
+
+The `contextlib` library also provides the `contextmanager` decorator, which
+allows for very simple context managers to be created as generator functions
+with the `yield` keyword:
+
+```python
+from contextlib import contextmanager
+
+
+@contextmanager
+def context_manager(number: int):
+    print('Entering context manager')
+    yield f'The number is {number}'
+    print('Exiting context manager')
+
+
+with context_manager(number=10) as provided_var:
+    print(provided_var)
+```
+
+Which creates the following output:
+
+```text
+Entering context manager
+The number is 10
+Exiting context manager
+```
+
 ## Command-Line Arguments
 
 Python has built-in support for handling command-line utilities using its
