@@ -192,6 +192,83 @@ nd = datetime.date(year=2011, month=5, day=1) + datetime.timedelta(days=5)
 nd.isoformat() # '2011-05-06'
 ```
 
+### Calendar
+
+The built-in `calendar` module provides utilities for handling calendar-related
+tasks, as well as constants for numbered days:
+
+```python
+import calendar
+
+calendar.MONDAY # int(calendar.MONDAY) returns `0`
+calendar.TUESDAY
+calendar.WEDNESDAY
+calendar.THURSDAY
+calendar.FRIDAY
+calendar.SATURDAY
+calendar.SUNDAY # int(calendar.SUNDAY) returns `6`
+```
+
+Numbered (from 1 to 12) enumerated constants for months are also available:
+
+```python
+import calendar
+
+calendar.JANUARY
+calendar.FEBRUARY
+calendar.MARCH
+calendar.APRIL
+calendar.MAY
+calendar.JUNE
+calendar.JULY
+calendar.AUGUST
+calendar.SEPTEMBER
+calendar.OCTOBER
+calendar.NOVEMBER
+calendar.DECEMBER
+```
+
+Finally, the `calendar` module provides methods for quickly and easily
+iterating through calendar dates:
+
+```python
+import calendar
+
+
+cal = calendar.Calendar()
+
+# Get `datetime.date` objects for every day in January 2025
+cal.itermonthdates(2025, calendar.JANUARY)
+```
+
+The `list(...)` evaluates the generator to the following list:
+
+```python
+[
+    datetime.date(2024, 12, 30), datetime.date(2024, 12, 31),
+    datetime.date(2025, 1, 1), datetime.date(2025, 1, 2),
+    datetime.date(2025, 1, 3), datetime.date(2025, 1, 4),
+    datetime.date(2025, 1, 5), datetime.date(2025, 1, 6),
+    datetime.date(2025, 1, 7), datetime.date(2025, 1, 8),
+    datetime.date(2025, 1, 9), datetime.date(2025, 1, 10),
+    datetime.date(2025, 1, 11), datetime.date(2025, 1, 12),
+    datetime.date(2025, 1, 13), datetime.date(2025, 1, 14),
+    datetime.date(2025, 1, 15), datetime.date(2025, 1, 16),
+    datetime.date(2025, 1, 17), datetime.date(2025, 1, 18),
+    datetime.date(2025, 1, 19), datetime.date(2025, 1, 20),
+    datetime.date(2025, 1, 21), datetime.date(2025, 1, 22),
+    datetime.date(2025, 1, 23), datetime.date(2025, 1, 24),
+    datetime.date(2025, 1, 25), datetime.date(2025, 1, 26),
+    datetime.date(2025, 1, 27), datetime.date(2025, 1, 28),
+    datetime.date(2025, 1, 29), datetime.date(2025, 1, 30),
+    datetime.date(2025, 1, 31), datetime.date(2025, 2, 1),
+    datetime.date(2025, 2, 2),
+]
+```
+
+**Note:** This method returns all days before the start of the month and after
+the end of the month in order to form a complete week on both ends.
+
 ## Context Managers
 
 Context managers allow for the concise, convenient allocation, use, and
