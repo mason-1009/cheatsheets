@@ -63,7 +63,7 @@ future.
   - [x] Django
   - [x] `unittest`
   - [x] Faker
-  - [ ] `httpx`
+  - [x] `httpx`
   - [ ] Beautiful Soup
 - [x] Ruby
   - [x] RSpec
