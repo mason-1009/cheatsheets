@@ -64,7 +64,7 @@ future.
   - [x] `unittest`
   - [x] Faker
   - [x] `httpx`
-  - [ ] Beautiful Soup
+  - [x] Beautiful Soup
 - [x] Ruby
   - [x] RSpec
   - [x] Rails
