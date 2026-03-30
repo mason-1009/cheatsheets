@@ -134,7 +134,62 @@ a=3
 echo $((a+10))  # 13
 ```
 
+## Process Substitution
+
+It is possible to use process substitution to pipe command output to a program
+to be accepted as a file:
+
+```bash
+# Trivial example (prints the contents of ls -l)
+cat <(ls -l)
+
+# More complex command
+cat <(ls -l | cut -d ' ' -f1)
+```
+
+Alternatively, the same syntax can be used when output to a file needs to be
+piped into a another command:
+
+```bash
+# Writes from wget into a file that pipes into the Wayland clipboard
+wget 'https://www.google.com/humans.txt' -O >(wl-copy)
+```
+
 ## Miscellaneous
+
+### Merging Lines of Text
+
+Often it is necessary to blend text from multiple files into a single output
+file or stream. This is the function of the `paste` command. Consider the
+following file (`a.txt`):
+
+```text
+red
+blue
+green
+```
+
+And the file (`b.txt`):
+
+```text
+one
+two
+three
+```
+
+The lines can be combined with `paste`:
+
+```bash
+paste -d '|' a.txt b.txt 
+```
+
+This writes the following output to `stdout`:
+
+```text
+red|one
+blue|two
+green|three
+```
 
 ### Using `mountpoint`
 
