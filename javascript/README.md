@@ -350,3 +350,62 @@ const interval = setInterval(() => console.log("Ping"), 3000);
 // Stop the interval
 clearInterval(interval);
 ```
+
+## Watching Changes
+
+The `MutationObserver` API is now supported by all major browsers, allowing
+scripts to watch a DOM node (up to the `document` node) and trigger a callback
+upon changes (or "mutations").
+
+This is useful for extensions or scripts which need to continually monitor the
+page and perform actions when it changes (such as ad-blockers or accessibility
+helpers):
+
+```js
+const observer = new MutationObserver((mutationList, observer) => {
+  for (const mutation of mutationList) {
+    // Each mutation is of type MutationRecord
+    // mutation.type === "childList" -- child node added/removed
+    // mutation.type === "attributes" -- mutation.attributeName was modified
+    // ...
+    //
+    // mutation.addedNodes: NodeList of added nodes
+    // mutation.attributeName: Name of changed attribute or null
+    // mutation.oldValue: Previous attribute, previous node, or null
+    // mutation.removedNodes: NodeList of removed nodes
+    // mutation.target: Mutated node
+    //   - attributes: Element that changed
+    //   - characterData: The CharacterData node
+    //   - childList: The node whose children changed
+  }
+});
+
+const config = {
+  // Watch attributes
+  attributes: true,
+
+  // Array of attributes to monitor (all if exluded)
+  attributeFilter: ["status", "username"],
+
+  // Record the previous value of changed attributes
+  attributeOldValue: true,
+
+  // Watch addition/removal of child nodes
+  childList: true,
+
+  // Monitor the entire subtree of nodes
+  subtree: true,
+
+  // Monitor nodes for changes to character data in node
+  characterData: true,
+
+  // Record the previous value of a node's text
+  characterDataOldValue: true,
+};
+
+// Begin observing a target node (the entire document in this case)
+observer.observe(document, config);
+
+// Stop observing
+observer.disconnect();
+```
