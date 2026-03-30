@@ -595,3 +595,93 @@ user = hg
 port = 50022
 forwardx11 = no
 ```
+
+## Handling URLs
+
+The standard library includes the `urllib.parse` module for breaking apart and
+building URLs for multiple schemes.
+
+### Parsing URLs
+
+The `urllib.parse.urlparse` method breaks URL strings into named tuples of type
+`ParseResult`:
+
+```python
+from urllib.parse import (
+    parse_qs,
+    urlparse,
+    ParseResult,
+)
+
+# Parse a URL into its components
+parsed_url = urlparse(
+    'https://domain.com/path/to/location?query=value#fragment'
+)
+
+# Produces the named tuple
+#
+# parsed_url = ParseResult(
+#     scheme='https',
+#     netloc='domain.com',
+#     path='/path/to/location',
+#     params='',
+#     query='query=value',
+#     fragment='fragment',
+# )
+
+# Further parsing can be done on the query string
+parsed_qs = parse_qs(parsed_url.query)
+
+# Produces the dictionary
+#
+# parsed_qs = {
+#     'query': ['value'],
+# }
+```
+
+### Building URLs
+
+The `urllib.parse.urlunparse` alternatively accepts a `ParseResult` instance
+and generates a valid URL from it:
+
+```python
+from urllib.parse import (
+    urlunparse,
+    ParseResult,
+)
+
+unparsed_url = urlunparse(
+    ParseResult(
+        scheme='https',
+        netloc='domain.com',
+        path='/path/to/location',
+        params='',
+        query='query=value',
+        fragment='fragment',
+    )
+)
+
+# Produces the string
+#
+# unparsed_url = 'https://domain.com/path/to/location?query=value#fragment'
+```
+
+### Building Query Strings
+
+Using the `urllib.parse.urlencode` method, it is easy to construct query
+strings from dictionaries:
+
+```python
+from urllib.parse import urlencode
+
+params = {
+    'string_a': 'value_a',
+    'strings': ['first', 'second'],
+}
+
+encoded = urlencode(params)
+
+# Produces the string
+#
+# encoded = 'string_a=value_a&strings=%5B%27first%27%2C+%27second%27%5D'
+```
