@@ -117,3 +117,82 @@ jq '.searchTerm // "placeholder"' # Returns "movies"
 # Store the key count in a variable and add it to something else
 jq 'length as $key_count | (.count + $key_count)' # Returns 7 (3 + 4 keys)
 ```
+
+## String Operations
+
+```bash
+# Splitting a string
+jq '.results[1].name | split(" ")' # Returns ["Cow", "2"]
+
+# Converting from string to number
+jq '.results[1].name | split(" ") | .[1] | tonumber' # Returns: 2
+```
+
+## Recursive Operations
+
+Consider the following input text:
+
+```json
+{"name": "/", "children": [
+  {"name": "/bin", "children": [
+    {"name": "/bin/ls", "children": []},
+    {"name": "/bin/sh", "children": []}]},
+  {"name": "/home", "children": [
+    {"name": "/home/stephen", "children": [
+      {"name": "/home/stephen/jq", "children": []}]}]}]}
+```
+
+To perform an operation on the structure recursively, use the `recurse(f)`
+function:
+
+```bash
+# Returns:
+# "/"
+# "/bin"
+# "/bin/ls"
+# "/bin/sh"
+# "/home"
+# "/home/stephen"
+# "/home/stephen/jq"
+jq 'recurse(.children[]) | .name'
+```
+
+## String Interpolation
+
+```bash
+# Format a single string
+jq '"Search Term: \(.searchTerm)"' # "Search Term: movies"
+jq '"Success: \(if .success then "yes" else "no" end)"' # "Success: yes"
+
+# Format an array to strings
+# Returns:
+# "Cow (77)"
+# "Cow 2 (63)"
+# "Pig 1 (86)"
+jq '.results[] | "\(.name) (\(.rating))"'
+```
+
+## Format Strings and Escaping
+
+```bash
+# Escape URLs
+# Returns:
+# "http://site.com/?q=Cow"
+# "http://site.com/?q=Cow%202"
+# "http://site.com/?q=Pig%201"
+jq '.results[] | @uri "http://site.com/?q=\(.name)"'
+
+# Convert arrays to CSV
+# Returns:
+# "\"Cow\",\"1999-02-01\""
+# "\"Cow 2\",\"2002-03-11\""
+# "\"Pig 1\",\"2003-04-25\""
+jq '.results[] | [.name, .released] | @csv'
+
+# Convert arrays to TSV
+# Returns:
+# "Cow\t1999-02-01"
+# "Cow 2\t2002-03-11"
+# "Pig 1\t2003-04-25"
+jq '.results[] | [.name, .released] | @tsv'
+```
