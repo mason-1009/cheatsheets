@@ -100,6 +100,35 @@ jq '.[] | arrays' # Get all array values (returns array of movies)
 jq '.results[] | objects' # Get all object values (returns "movies")
 ```
 
+## Using the Reduce Operator
+
+Consider the following JSON file containing two distinct arrays:
+
+```json
+{
+  "array_one": [
+    1,
+    2,
+    3
+  ],
+  "array_two": [
+    4,
+    5,
+    6
+  ]
+}
+```
+
+Using the `reduce` operator, it is possible to combine arrays and reduce large
+data structures into smaller values:
+
+```bash
+# Merge array_one and array_two
+jq '[.array_one, .array_two] | reduce .[] as $arr ([]; . + $arr)'
+```
+
+The `reduce` operator follows the format: `reduce .[] as $i (INITIAL; . + $i)`
+
 ## Conditionals
 
 ```bash
@@ -195,4 +224,44 @@ jq '.results[] | [.name, .released] | @csv'
 # "Cow 2\t2002-03-11"
 # "Pig 1\t2003-04-25"
 jq '.results[] | [.name, .released] | @tsv'
+```
+
+## Date and Time Conversions
+
+```bash
+# Convert from epoch timestamps to ISO 8601
+# Returns: "2026-04-24T20:36:43Z"
+echo '{"ts": 1777063003}' | jq '.ts | todate'
+
+# Convert from ISO 8601 to epoch timestamps
+# Returns: 1777063003
+echo '{"d": "2026-04-24T20:36:43Z"}' | jq '.d | fromdate'
+```
+
+## Handle Multiple Files
+
+The `jq` tool can load multiple `json` files at once with the `--slurp`/`-s`
+flag. Each file will be streamed into a single top-level array.
+
+Consider the following file (`a.json`):
+
+```json
+{
+  "filename": "a.json"
+}
+```
+
+And another file (`b.json`):
+
+```json
+{
+  "filename": "b.json"
+}
+```
+
+```bash
+# Returns:
+# "a.json"
+# "b.json"
+jq --slurp '.[].filename' a.json b.json
 ```
