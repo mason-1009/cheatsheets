@@ -4,6 +4,35 @@
 
 ---
 
+## File and Directory Naming
+### Rules, ([Source](https://stackoverflow.com/questions/25161774/what-are-conventions-for-filenames-in-go))
+1. File names that begin with "." or "_" are ignored by the go tool
+2. Files with the suffix _test.go are only compiled and run by the go test
+   tool.
+3. Files with os and architecture specific suffixes automatically follow those
+   same constraints, e.g. name_linux.go will only build on linux, name_amd64.go
+   will only build on amd64. This is the same as having a //+build amd64 line
+   at the top of the file.
+4. Idiomatic Go dictates that directories (packages) should be one, lowercase word.
+
+### Example
+```
+.
+└── dir
+    ├── long_action.go
+    ├── long_action_test.go
+    ├── action.go
+    └── action_test.go
+```
+
+## Importing Packages
+
+```go
+import m "math/rand"
+
+m.Intn()
+```
+
 ## Main Method
 
 ```go
@@ -229,14 +258,6 @@ isOdd := func(n int) bool {
 
 fmt.Println(isOdd(1)) // true
 fmt.Println(isOdd(2)) // false
-```
-
-## Packages
-
-```go
-import m "math/rand"
-
-m.Intn()
 ```
 
 ## Defer
