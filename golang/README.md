@@ -4,23 +4,27 @@
 
 ---
 
-## File and Directory Naming
-### Rules, ([Source](https://stackoverflow.com/questions/25161774/what-are-conventions-for-filenames-in-go))
-1. File names that begin with "." or "_" are ignored by the go tool
-2. Files with the suffix _test.go are only compiled and run by the go test
-   tool.
-3. Files with os and architecture specific suffixes automatically follow those
-   same constraints, e.g. name_linux.go will only build on linux, name_amd64.go
-   will only build on amd64. This is the same as having a //+build amd64 line
-   at the top of the file.
-4. Idiomatic Go dictates that directories (packages) should be one, lowercase word.
+## Repository, File, and Directory Naming
+### Rules ([Source](https://stackoverflow.com/questions/25161774/what-are-conventions-for-filenames-in-go))
+1. File names that begin with "." or "_" are ignored by the Go tool.
+2. Files with the suffix `_test.go` are only compiled and run when using `go
+   test`.
+3. Files with OS and architecture specific suffixes automatically follow those
+   same constraints, e.g. `name_linux.go` will only build on linux,
+   `name_amd64.go` will only build on amd64. This is the same as having a
+   `//+build amd64` line at the top of the file.
+4. Idiomatic Go dictates that directories (packages) should be one, lowercase
+   word. If seperation of words is required, an underscore can be used.
+5. Long repository names usually seperate words with a dash.
 
 ### Example
 ```
-.
+example-repository
+│
+├── long_pkg_name
+│   ├── long_action.go
+│   └── long_action_test.go
 └── dir
-    ├── long_action.go
-    ├── long_action_test.go
     ├── action.go
     └── action_test.go
 ```
