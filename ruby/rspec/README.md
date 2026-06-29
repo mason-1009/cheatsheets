@@ -22,7 +22,8 @@ describe SomeModule::SomeClass do
         context "multiply by 0" do
             let(:input_two) { 0 }
             it "returns 0" do
-                expect(SomeModule::SomeClass.multiple(input_one, input_two)).to eq(0)
+                expect(SomeModule::SomeClass.multiple(input_one, input_two))
+                    .to eq(0)
             end
         end
     end

@@ -13,6 +13,6 @@
   "author": "Marshall",
   "type": "commonjs",
   "devDependencies": {
-    "markdownlint-cli": "^0.44.0"
+    "markdownlint-cli": "^0.48.0"
   }
 }
