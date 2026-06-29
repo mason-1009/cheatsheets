@@ -4,8 +4,10 @@
 
 ---
 
-## Repository, File, and Directory Naming
-### Rules ([More Discussion](https://stackoverflow.com/questions/25161774/what-are-conventions-for-filenames-in-go))
+## Naming Conventions
+
+For more information, see [this post on **StackOverflow**](https://stackoverflow.com/questions/25161774/what-are-conventions-for-filenames-in-go).
+
 1. File names that begin with "." or "_" are ignored by the Go tool.
 2. Files with the suffix `_test.go` are only compiled and run when using `go
    test`.
@@ -17,8 +19,9 @@
    word. If seperation of words is required, an underscore can be used.
 5. Long repository names usually seperate words with a dash.
 
-### Example
-```
+### Folder Structure
+
+```plain
 example-repository
 │
 ├── long_pkg_name
