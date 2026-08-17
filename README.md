@@ -86,7 +86,7 @@ future.
   - [ ] React
   - [ ] Vue
 - [ ] Elixir
-- [ ] Dart
+- [x] Dart
   - [ ] Flutter
 - [ ] Kotlin
   - [ ] Android Applications
